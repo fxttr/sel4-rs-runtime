@@ -24,10 +24,12 @@
  */
 
 use core::fmt::Write;
+use core::panic::PanicInfo;
+use crate::dbg::DbgOutput;
 
 #[panic_handler]
-fn panic(info: &core::panic::PanicInfo) -> ! {
-    let _res = writeln!(crate::debug::DebugOutHandle, "!!! Fatal: {:#?}", info);
+fn panic(info: &PanicInfo) -> ! {
+    let _res = writeln!(DbgOutput, "!!! Fatal: {:#?}", info);
     abort()
 }
 
